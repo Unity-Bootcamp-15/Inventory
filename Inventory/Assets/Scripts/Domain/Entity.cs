@@ -4,7 +4,12 @@ using UnityEngine;
 // 식별자를 갖고 있는 개체
 public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : IEquatable<TId>
 {
-    public TId Id { get; protected set; }
+    public TId Id { get; }
+
+    public Entity(TId id)
+    {
+        Id = id;
+    }
 
     public bool Equals(Entity<TId> other)
     {
