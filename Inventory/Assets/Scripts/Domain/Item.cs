@@ -1,6 +1,5 @@
 public sealed class Item : Entity<int>
 {
-    // Id, Name, Atk, Def
 
     public string Name { get; }
     public Status Stat { get; }

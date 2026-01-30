@@ -8,6 +8,8 @@ public sealed class Inventory
 {
     private readonly Dictionary<long, UserInventoryItem> _items = new();
 
+    public IReadOnlyCollection<UserInventoryItem> AllItems => _items.Values;
+
     public Inventory(IList<UserInventoryItem> items)
     {
         Debug.Assert(items is not null);

@@ -1,5 +1,7 @@
 using ErrorOr;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro.EditorUtilities;
 
@@ -9,13 +11,15 @@ public sealed class UserInventoryService
 
     private readonly Inventory _inventory;
 
-    public UserInventoryService(ItemService itemService, Inventory inventory)
+    public IReadOnlyCollection<UserInventoryItem> UnequippedItems => _inventory.AllItems;
+
+    public UserInventoryService(ItemService itemService)
     {
         Debug.Assert(itemService != null);
-        Debug.Assert(inventory != null);
+        //Debug.Assert(inventory != null);
 
         _itemService = itemService;
-        _inventory = inventory;
+        _inventory = new Inventory(new List<UserInventoryItem>());
     }
 
     public ErrorOr<Updated> AcquireRandomItem()
@@ -25,4 +29,5 @@ public sealed class UserInventoryService
 
         return _inventory.AddItem(newItem);
     }
+
 }
