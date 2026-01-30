@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using ErrorOr;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private UserInventoryServiceLocatorSO _userInventoryServiceLocator;
+    [SerializeField] private InventoryUI _inventoryUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +22,8 @@ public class GameManager : MonoBehaviour
         if (keyboard.spaceKey.wasPressedThisFrame)
         {
             Debug.Log("랜덤한 아이템 획득 시도");
-            var result = _userInventoryServiceLocator.Service.AcquireRandomItem();
+            var result = _userInventoryServiceLocator.Service.AcquireRandomItem()
+                .ThenDo(_ => _inventoryUI.Refresh());
 
             if (result.IsError)
             {
