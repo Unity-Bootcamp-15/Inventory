@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro.EditorUtilities;
 
-public sealed class UserInventoryService
+public sealed class InventoryService
 {
     private readonly ItemService _itemService;
 
@@ -13,7 +13,7 @@ public sealed class UserInventoryService
 
     public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.AllItems;
 
-    public UserInventoryService(ItemService itemService)
+    public InventoryService(ItemService itemService)
     {
         Debug.Assert(itemService != null);
         //Debug.Assert(inventory != null);
