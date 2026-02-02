@@ -9,7 +9,7 @@ public sealed class InventoryService
 {
     private readonly ItemService _itemService;
 
-    private readonly Bag _inventory;
+    private Inventory _inventory;
 
     public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.AllItems;
 
@@ -20,6 +20,7 @@ public sealed class InventoryService
 
         _itemService = itemService;
         _inventory = new Bag(new List<BagItem>());
+        _inventory = Inventory.CreateEmpty();
     }
 
     public ErrorOr<Updated> AcquireRandomItem()
