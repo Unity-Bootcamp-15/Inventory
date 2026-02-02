@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+
+
 
 public sealed class ItemService
 {
@@ -23,5 +27,19 @@ public sealed class ItemService
         Item randomItem = items[randomIndex];
         // 3. 아이템의 ID를 반환한다.
         return randomItem.Id;
+    }
+
+    private const string k_TexturePath = "Textures";
+    public string GetGradeSpritePath(ItemId id)
+    {
+        ItemGrade grade = id.Grade;
+        return Path.Combine(k_TexturePath, grade.ToString()); 
+    }
+
+    public string GetIconSpritePath(ItemId id)
+    {
+        StringBuilder sb = new(id.RawId.ToString());
+        sb[1] = '1';
+        return Path.Combine(k_TexturePath, sb.ToString());
     }
 }
