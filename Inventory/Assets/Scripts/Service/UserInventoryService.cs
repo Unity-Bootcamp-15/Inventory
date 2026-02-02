@@ -9,7 +9,7 @@ public sealed class UserInventoryService
 {
     private readonly ItemService _itemService;
 
-    private readonly Inventory _inventory;
+    private readonly Bag _inventory;
 
     public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.AllItems;
 
@@ -19,7 +19,7 @@ public sealed class UserInventoryService
         //Debug.Assert(inventory != null);
 
         _itemService = itemService;
-        _inventory = new Inventory(new List<BagItem>());
+        _inventory = new Bag(new List<BagItem>());
     }
 
     public ErrorOr<Updated> AcquireRandomItem()

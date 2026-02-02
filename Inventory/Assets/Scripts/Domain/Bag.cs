@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-public sealed class Inventory
+public sealed class Bag
 {
     private readonly Dictionary<long, BagItem> _items = new();
 
     public IReadOnlyCollection<BagItem> AllItems => _items.Values;
 
-    public Inventory(IList<BagItem> items)
+    public Bag(IList<BagItem> items)
     {
         Debug.Assert(items is not null);
 
