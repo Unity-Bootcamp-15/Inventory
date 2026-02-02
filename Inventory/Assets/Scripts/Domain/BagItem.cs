@@ -5,7 +5,7 @@ public sealed class BagItem : Entity<long>
     public long SerialNumber => Id;
     public ItemId ItemId { get; }
 
-    private BagItem(long serialNumber, ItemId itemId)
+    public BagItem(long serialNumber, ItemId itemId)
         : base(serialNumber)
     {
         ItemId = itemId;
