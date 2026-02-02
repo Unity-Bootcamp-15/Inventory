@@ -6,18 +6,18 @@ using System.Linq;
 
 public sealed class Inventory
 {
-    private readonly Dictionary<long, UserInventoryItem> _items = new();
+    private readonly Dictionary<long, BagItem> _items = new();
 
-    public IReadOnlyCollection<UserInventoryItem> AllItems => _items.Values;
+    public IReadOnlyCollection<BagItem> AllItems => _items.Values;
 
-    public Inventory(IList<UserInventoryItem> items)
+    public Inventory(IList<BagItem> items)
     {
         Debug.Assert(items is not null);
 
         _items = items.ToDictionary(item => item.SerialNumber);
     }
 
-    public ErrorOr<Updated> AddItem(UserInventoryItem item)
+    public ErrorOr<Updated> AddItem(BagItem item)
     {
         Debug.Assert(item != null);
 

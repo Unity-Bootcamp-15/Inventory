@@ -17,7 +17,7 @@ public class InventoryUI : MonoBehaviour
         _scroll.ClearData();
 
         // 인벤토리에 있는 아이템을 가져와서 => UserInventoryService
-        foreach (UserInventoryItem item in _userInventoryServiceLocator.Service.UnequippedItems)
+        foreach (BagItem item in _userInventoryServiceLocator.Service.UnequippedItems)
         {
             // item.ItemId에 해당되는 Grade 스프라이트, Icon 스프라이트
             

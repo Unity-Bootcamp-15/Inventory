@@ -11,7 +11,7 @@ public sealed class UserInventoryService
 
     private readonly Inventory _inventory;
 
-    public IReadOnlyCollection<UserInventoryItem> UnequippedItems => _inventory.AllItems;
+    public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.AllItems;
 
     public UserInventoryService(ItemService itemService)
     {
@@ -19,13 +19,13 @@ public sealed class UserInventoryService
         //Debug.Assert(inventory != null);
 
         _itemService = itemService;
-        _inventory = new Inventory(new List<UserInventoryItem>());
+        _inventory = new Inventory(new List<BagItem>());
     }
 
     public ErrorOr<Updated> AcquireRandomItem()
     {
         ItemId itemId = _itemService.GetRandomId();
-        UserInventoryItem newItem = UserInventoryItem.Create(itemId);
+        BagItem newItem = BagItem.Create(itemId);
 
         return _inventory.AddItem(newItem);
     }
