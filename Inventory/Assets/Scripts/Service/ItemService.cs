@@ -13,7 +13,7 @@ public sealed class ItemService
         _itemRepository = itemRepository;
     }
 
-    public int GetRandomId()
+    public ItemId GetRandomId()
     {
         // 1. 모든 아이템 목록을 가져온다.
         IReadOnlyList<Item> items = _itemRepository.All;

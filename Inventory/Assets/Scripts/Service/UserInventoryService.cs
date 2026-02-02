@@ -24,7 +24,7 @@ public sealed class UserInventoryService
 
     public ErrorOr<Updated> AcquireRandomItem()
     {
-        int itemId = _itemService.GetRandomId();
+        ItemId itemId = _itemService.GetRandomId();
         UserInventoryItem newItem = UserInventoryItem.Create(itemId);
 
         return _inventory.AddItem(newItem);
