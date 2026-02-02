@@ -5,8 +5,8 @@ public class UserInventoryServiceLocatorSO : ScriptableObject
 {
     public InventoryService Service { get; private set; }
 
-    public void Init(ItemService itemService)
+    public void Init(ItemService itemService, IInventoryRepository inventoryRepository)
     {
-        Service = new InventoryService(itemService);
+        Service = new InventoryService(itemService, inventoryRepository);
     }
 }

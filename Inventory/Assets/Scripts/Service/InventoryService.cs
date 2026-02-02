@@ -1,25 +1,24 @@
 using ErrorOr;
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using TMPro.EditorUtilities;
+using UnityEngine.Assertions;
 
 public sealed class InventoryService
 {
     private readonly ItemService _itemService;
+    private readonly IInventoryRepository _inventoryRepository;
 
     private Inventory _inventory;
 
-    public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.AllItems;
+    public IReadOnlyCollection<BagItem> UnequippedItems => _inventory.UnequippedItems;
 
-    public InventoryService(ItemService itemService)
+    public InventoryService(ItemService itemService, IInventoryRepository inventoryRepository)
     {
-        Debug.Assert(itemService != null);
-        //Debug.Assert(inventory != null);
-
+        Assert.IsNotNull(itemService);
+        Assert.IsNotNull(inventoryRepository);
+       
         _itemService = itemService;
-        _inventory = new Bag(new List<BagItem>());
+        _inventoryRepository = inventoryRepository;
+
         _inventory = Inventory.CreateEmpty();
     }
 
@@ -31,4 +30,20 @@ public sealed class InventoryService
         return _inventory.AddItem(newItem);
     }
 
+    public ErrorOr<Success> SaveData()
+    {
+        return _inventoryRepository.Save(_inventory);
+    }
+
+    public ErrorOr<Success> LoadData()
+    {
+        var result = _inventoryRepository.Load();
+        if (result.IsError)
+        {
+            return Error.Failure(description: "인벤토리를 불러오는 데 실패하였습니다.");
+        }
+
+        _inventory = result.Value;
+        return Result.Success;
+    }
 }

@@ -863,12 +863,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   needItemCount: 0
-  itemPrefab: {fileID: 7916064874537336740, guid: f20f49781e8594d449973fcf68de090d, type: 3}
+  itemPrefab: {fileID: 5212594201558180090, guid: f20f49781e8594d449973fcf68de090d, type: 3}
   dynamicItemSize: 0
   layout:
     axis: 1
     padding: {x: 100, y: 0}
-    space: {x: 5, y: 0}
+    space: {x: 5, y: 5}
     topToBotton: 1
     leftToRight: 1
     values:
@@ -1016,6 +1016,7 @@ MonoBehaviour:
   _userInventoryServiceLocator: {fileID: 11400000, guid: 74850088e691d3944ae79edee774009c, type: 2}
   _itemServiceLocator: {fileID: 11400000, guid: 26c439bfe5799bd4d9e0dc15ee995b12, type: 2}
   _itemRepositorySO: {fileID: 11400000, guid: 552acfa04aa65504090d59a1408b99f3, type: 2}
+  _inventoryRepositorySO: {fileID: 11400000, guid: 6103061c69c3f714db75baaec8f3130b, type: 2}
 --- !u!1 &1325365250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   _scroll: {fileID: 667526775}
   _userInventoryServiceLocator: {fileID: 11400000, guid: 74850088e691d3944ae79edee774009c, type: 2}
+  _itemServiceLocator: {fileID: 11400000, guid: 26c439bfe5799bd4d9e0dc15ee995b12, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +11,11 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        var result = _userInventoryServiceLocator.Service.LoadData();
+        if (result.IsError)
+        {
+            Debug.LogError(result.FirstError.Description);
+        }
     }
 
     // Update is called once per frame
@@ -41,5 +46,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log($"SerialNumber: {item.SerialNumber}, itemId: {item.ItemId}");
             }
         }
+    }
+
+
+    private void OnApplicationQuit()
+    {
+        _userInventoryServiceLocator.Service.SaveData();
     }
 }
