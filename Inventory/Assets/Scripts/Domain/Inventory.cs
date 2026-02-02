@@ -1,10 +1,10 @@
 using System.Diagnostics;
 
-public sealed class UserInventory
+public sealed class Inventory
 {
     private readonly Bag _inventory;
 
-    public UserInventory(Bag inventory)
+    public Inventory(Bag inventory)
     {
         Debug.Assert(inventory != null);
 
